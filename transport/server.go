@@ -7,20 +7,23 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/ynuraddi/t-tsarka/config"
 	"github.com/ynuraddi/t-tsarka/ilogger"
+	"github.com/ynuraddi/t-tsarka/service"
 )
 
 type Server struct {
 	config config.Config
-
 	logger ilogger.ILogger
 
-	router *echo.Echo
+	router  *echo.Echo
+	service *service.Manager
 }
 
-func New(config config.Config, logger ilogger.ILogger) *Server {
+func New(config config.Config, logger ilogger.ILogger, service *service.Manager) *Server {
 	server := &Server{
 		config: config,
 		logger: logger,
+
+		service: service,
 	}
 
 	return server

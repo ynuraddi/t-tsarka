@@ -8,6 +8,7 @@ import (
 
 	"github.com/ynuraddi/t-tsarka/config"
 	"github.com/ynuraddi/t-tsarka/pkg/logger"
+	"github.com/ynuraddi/t-tsarka/service"
 	"github.com/ynuraddi/t-tsarka/transport"
 )
 
@@ -28,7 +29,9 @@ func main() {
 	}
 	logger := logger.NewLogger(fileLogs, logger.Level(config.LogLevel), osC)
 
-	server := transport.New(config, logger)
+	service := service.New(config, logger)
+
+	server := transport.New(config, logger, service)
 
 	log.Fatalln(server.Start(ctx))
 }
