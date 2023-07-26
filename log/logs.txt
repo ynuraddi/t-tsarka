@@ -1,13 +1,11 @@
-19:52:26	[DEBUG]	service succes inited
-19:52:26	[DEBUG]	server success inited
-19:52:26	[INFO]	start server
-19:52:28	[FATAL]	failed start server:	http: Server closed
-19:52:28	[INFO]	Sercer gracefully shutdown
+22:14:30	[INFO]	start server
+22:15:33	[FATAL]	failed start server:	http: Server closed
+22:15:33	[INFO]	Sercer gracefully shutdown
 d on the 'required' tag
-19:51:19	[FATAL]	failed start server:	http: Server closed
-19:51:19	[INFO]	Sercer gracefully shutdown
-inding request - FindSubstring()
-19:42:40	[DEBUG]	start find substr in ""
+22:13:03	[ERROR]	bad request:	Key: 'checkEmailRequest.Input' Error:Field validation for 'Input' failed on the 'required' tag
+22:14:05	[FATAL]	failed start server:	http: Server closed
+22:14:05	[INFO]	Sercer gracefully shutdown
+G]	start find substr in ""
 19:42:41	[DEBUG]	success binding request - FindSubstring()
 19:42:41	[DEBUG]	start find substr in ""
 19:42:41	[DEBUG]	success binding request - FindSubstring()

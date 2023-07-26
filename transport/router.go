@@ -12,5 +12,7 @@ func (s *Server) setupRouter() {
 
 	router.POST("/rest/substr/find", s.findSubstring)
 
+	router.POST("/rest/email/check", s.emailCheck)
+
 	s.router = router
 }

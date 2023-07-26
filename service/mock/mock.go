@@ -46,3 +46,40 @@ func (mr *MockISubstrServiceMockRecorder) FindSubstr(s interface{}) *gomock.Call
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindSubstr", reflect.TypeOf((*MockISubstrService)(nil).FindSubstr), s)
 }
+
+// MockIEmailService is a mock of IEmailService interface.
+type MockIEmailService struct {
+	ctrl     *gomock.Controller
+	recorder *MockIEmailServiceMockRecorder
+}
+
+// MockIEmailServiceMockRecorder is the mock recorder for MockIEmailService.
+type MockIEmailServiceMockRecorder struct {
+	mock *MockIEmailService
+}
+
+// NewMockIEmailService creates a new mock instance.
+func NewMockIEmailService(ctrl *gomock.Controller) *MockIEmailService {
+	mock := &MockIEmailService{ctrl: ctrl}
+	mock.recorder = &MockIEmailServiceMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockIEmailService) EXPECT() *MockIEmailServiceMockRecorder {
+	return m.recorder
+}
+
+// Check mocks base method.
+func (m *MockIEmailService) Check(s string) []string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Check", s)
+	ret0, _ := ret[0].([]string)
+	return ret0
+}
+
+// Check indicates an expected call of Check.
+func (mr *MockIEmailServiceMockRecorder) Check(s interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Check", reflect.TypeOf((*MockIEmailService)(nil).Check), s)
+}

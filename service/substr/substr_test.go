@@ -1,6 +1,7 @@
 package substr
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -8,8 +9,8 @@ import (
 )
 
 func TestSubstrService(t *testing.T) {
-	logger := logger.Logger{}
-	service := NewSubstrService(&logger)
+	logger := logger.NewLogger(os.Stderr, logger.LvlTest, nil)
+	service := NewSubstrService(logger)
 
 	testCases := []struct {
 		input     string
