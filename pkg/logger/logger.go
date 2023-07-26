@@ -48,6 +48,8 @@ func (l *Logger) print(lvl Level, msg string) {
 
 	msg = fmt.Sprintf("%s\t%s", time.Now().Format(time.TimeOnly), msg)
 
+	l.mu.Lock()
+	defer l.mu.Unlock()
 	l.output.Write(append([]byte(msg), '\n'))
 }
 
