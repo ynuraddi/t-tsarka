@@ -8,6 +8,7 @@ import (
 
 	"github.com/ynuraddi/t-tsarka/config"
 	"github.com/ynuraddi/t-tsarka/pkg/logger"
+	"github.com/ynuraddi/t-tsarka/transport"
 )
 
 func main() {
@@ -26,6 +27,10 @@ func main() {
 		log.Fatalln(err)
 	}
 	logger := logger.NewLogger(fileLogs, logger.Level(config.LogLevel), osC)
+
+	server := transport.New(config, logger)
+
+	log.Fatalln(server.Start(ctx))
 }
 
 func gracefullShutdown(c context.CancelFunc) chan os.Signal {
