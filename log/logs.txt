@@ -1,0 +1,4 @@
+17:58:07	[DEBUG]	success binding request - FindSubstring()
+17:58:07	[DEBUG]	start find substr in "geekforgeek"
+17:58:13	[FATAL]	failed start server:	http: Server closed
+17:58:13	[INFO]	Sercer gracefully shutdown
