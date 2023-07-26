@@ -30,9 +30,12 @@ func main() {
 	logger := logger.NewLogger(fileLogs, logger.Level(config.LogLevel), osC)
 
 	service := service.New(config, logger)
+	logger.Debug("service succes inited")
 
 	server := transport.New(config, logger, service)
+	logger.Debug("server success inited")
 
+	logger.Info("start server")
 	log.Fatalln(server.Start(ctx))
 }
 

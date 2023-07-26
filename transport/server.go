@@ -11,14 +11,14 @@ import (
 )
 
 type Server struct {
-	config config.Config
+	config *config.Config
 	logger ilogger.ILogger
 
 	router  *echo.Echo
 	service *service.Manager
 }
 
-func New(config config.Config, logger ilogger.ILogger, service *service.Manager) *Server {
+func New(config *config.Config, logger ilogger.ILogger, service *service.Manager) *Server {
 	server := &Server{
 		config: config,
 		logger: logger,

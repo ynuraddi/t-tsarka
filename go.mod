@@ -3,6 +3,8 @@ module github.com/ynuraddi/t-tsarka
 go 1.20
 
 require (
+	github.com/go-playground/validator/v10 v10.14.1
+	github.com/golang/mock v1.6.0
 	github.com/labstack/echo/v4 v4.11.1
 	github.com/ory/viper v1.7.5
 	github.com/stretchr/testify v1.8.4
@@ -13,8 +15,12 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgraph-io/ristretto v0.0.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
+	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
+	github.com/go-playground/locales v0.14.1 // indirect
+	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/labstack/gommon v0.4.0 // indirect
+	github.com/leodido/go-urn v1.2.4 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect

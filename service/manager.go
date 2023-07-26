@@ -14,7 +14,7 @@ type Manager struct {
 	Substr ISubstrService
 }
 
-func New(config config.Config, logger ilogger.ILogger) *Manager {
+func New(config *config.Config, logger ilogger.ILogger) *Manager {
 	substrService := substr.NewSubstrService(logger)
 
 	manager := &Manager{

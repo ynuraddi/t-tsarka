@@ -16,7 +16,8 @@ var _ ilogger.ILogger = (*Logger)(nil)
 type Level int8
 
 const (
-	LvlErr Level = iota
+	LvlTest Level = iota
+	LvlErr
 	LvlWrn
 	LvlInf
 	LvlDeb
@@ -50,6 +51,7 @@ func (l *Logger) print(lvl Level, msg string) {
 
 	l.mu.Lock()
 	defer l.mu.Unlock()
+	fmt.Println(msg)
 	l.output.Write(append([]byte(msg), '\n'))
 }
 
