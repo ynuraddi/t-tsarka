@@ -2,72 +2,78 @@ package logger
 
 import (
 	"fmt"
-	"log"
+	"io"
 	"os"
+	"sync"
+	"syscall"
+	"time"
+
+	"github.com/ynuraddi/t-tsarka/ilogger"
 )
 
-// "github.com/ynuraddi/t-tsarka/ilogger"
+var _ ilogger.ILogger = (*Logger)(nil)
 
-// var _ ilogger.ILogger = (*Logger)(nil)
+type Level int8
 
 const (
-	errLvl = iota
-	wrnLvl
-	infLvl
-	debLvl
+	LvlErr Level = iota
+	LvlWrn
+	LvlInf
+	LvlDeb
 )
 
 type Logger struct {
-	file  *os.File
-	level int
+	output   io.Writer
+	minLevel Level
+	mu       sync.Mutex
+
+	sigChan chan os.Signal
 }
 
-func NewLogger(dst string, logLevel int) (*Logger, error) {
-	file, err := os.OpenFile(dst, os.O_WRONLY, 0o666)
-	if err != nil {
-		return nil, err
+// need chan osSignal for gracefull shutdown
+func NewLogger(out io.Writer, logLevel Level, sigChan chan<- os.Signal) *Logger {
+	logger := &Logger{
+		output:   out,
+		minLevel: Level(logLevel),
+		mu:       sync.Mutex{},
 	}
 
-	return &Logger{
-		file: file,
-	}, nil
+	return logger
 }
 
-func (l *Logger) Close() {
-	l.file.Close()
-}
-
-func (l *Logger) writeLog(logStr string) {
-	log.Println(logStr)
-	if l.file != nil {
-		l.file.WriteString(logStr + "\n")
+func (l *Logger) print(lvl Level, msg string) {
+	if lvl > l.minLevel {
+		return
 	}
+
+	msg = fmt.Sprintf("%s\t%s", time.Now().Format(time.TimeOnly), msg)
+
+	l.output.Write(append([]byte(msg), '\n'))
+}
+
+func (l *Logger) Fatal(msg string, err error) {
+	logMsg := fmt.Sprintf("[FATAL]\t%s:\t%v", msg, err)
+	l.print(LvlErr, logMsg)
+
+	l.sigChan <- syscall.SIGTERM
 }
 
 func (l *Logger) Error(msg string, err error) {
-	logStr := fmt.Sprintf("[ERROR] %s: %v", msg, err)
-	if l.level <= errLvl {
-		l.writeLog(logStr)
-	}
+	logMsg := fmt.Sprintf("[ERROR]\t%s:\t%v", msg, err)
+	l.print(LvlErr, logMsg)
 }
 
-func (l *Logger) Warning(msg string, err error) {
-	logStr := fmt.Sprintf("[WARNING] %s: %v", msg, err)
-	if l.level <= wrnLvl {
-		l.writeLog(logStr)
-	}
+func (l *Logger) Warning(msg string) {
+	logMsg := fmt.Sprintf("[WARNING]\t%s", msg)
+	l.print(LvlWrn, logMsg)
 }
 
-func (l *Logger) Info(msg string, err error) {
-	logStr := fmt.Sprintf("[INFO] %s: %v", msg, err)
-	if l.level <= infLvl {
-		l.writeLog(logStr)
-	}
+func (l *Logger) Info(msg string) {
+	logMsg := fmt.Sprintf("[INFO]\t%s", msg)
+	l.print(LvlInf, logMsg)
 }
 
-func (l *Logger) Debug(msg string, err error) {
-	logStr := fmt.Sprintf("[DEBUG] %s: %v", msg, err)
-	if l.level <= debLvl {
-		l.writeLog(logStr)
-	}
+func (l *Logger) Debug(msg string) {
+	logMsg := fmt.Sprintf("[DEBUG]\t%s", msg)
+	l.print(LvlDeb, logMsg)
 }
