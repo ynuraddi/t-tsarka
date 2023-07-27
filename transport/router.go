@@ -14,5 +14,7 @@ func (s *Server) setupRouter() {
 
 	router.POST("/rest/email/check", s.emailCheck)
 
+	router.POST("/rest/iin/check", s.iinCheck)
+
 	s.router = router
 }
