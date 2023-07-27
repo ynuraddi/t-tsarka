@@ -13,8 +13,11 @@ func (s *Server) setupRouter() {
 	router.POST("/rest/substr/find", s.findSubstring)
 
 	router.POST("/rest/email/check", s.emailCheck)
-
 	router.POST("/rest/iin/check", s.iinCheck)
+
+	router.POST("/rest/counter/add/:i", nil)
+	router.POST("/rest/counter/sub/:i", nil)
+	router.POST("/rest/counter/val", nil)
 
 	s.router = router
 }

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/redis/go-redis/v9"
 	"github.com/ynuraddi/t-tsarka/config"
 	"github.com/ynuraddi/t-tsarka/ilogger"
 	"github.com/ynuraddi/t-tsarka/service/email"
@@ -22,13 +23,19 @@ type IIINService interface {
 	Check(s string) []string
 }
 
+type ICounterService interface {
+	Add(i int) error
+	Sub(i int) error
+	Get() (int, error)
+}
+
 type Manager struct {
 	Substr ISubstrService
 	Email  IEmailService
 	IIN    IIINService
 }
 
-func New(config *config.Config, logger ilogger.ILogger) *Manager {
+func New(config *config.Config, logger ilogger.ILogger, redisClient *redis.Client) *Manager {
 	substrService := substr.NewSubstrService(logger)
 	emailService := email.NewEmailService(logger)
 	iinService := iin.NewiinService(logger)

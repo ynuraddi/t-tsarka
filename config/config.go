@@ -8,6 +8,11 @@ type Config struct {
 
 	HttpHost string `mapstructure:"HTTP_HOST"`
 	HttpPort string `mapstructure:"HTTP_PORT"`
+
+	RedisHost string `mapstructure:"REDIS_HOST"`
+	RedisPort string `mapstructure:"REDIS_PORT"`
+
+	RedisCounterKey string `mapstructure:"REDIS_COUNTER_KEY"`
 }
 
 func LoadConfig(path string) (config *Config, err error) {
