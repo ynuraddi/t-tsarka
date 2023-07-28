@@ -1,20 +1,19 @@
-22:14:30	[INFO]	start server
-22:15:33	[FATAL]	failed start server:	http: Server closed
-22:15:33	[INFO]	Sercer gracefully shutdown
-d on the 'required' tag
-22:13:03	[ERROR]	bad request:	Key: 'checkEmailRequest.Input' Error:Field validation for 'Input' failed on the 'required' tag
-22:14:05	[FATAL]	failed start server:	http: Server closed
-22:14:05	[INFO]	Sercer gracefully shutdown
-G]	start find substr in ""
-19:42:41	[DEBUG]	success binding request - FindSubstring()
-19:42:41	[DEBUG]	start find substr in ""
-19:42:41	[DEBUG]	success binding request - FindSubstring()
-19:42:41	[DEBUG]	start find substr in ""
-19:42:45	[DEBUG]	success binding request - FindSubstring()
-19:42:45	[DEBUG]	start find substr in ""
-19:42:48	[DEBUG]	success binding request - FindSubstring()
-19:42:48	[DEBUG]	start find substr in ""
-19:42:51	[DEBUG]	success binding request - FindSubstring()
-19:42:51	[DEBUG]	start find substr in ""
-19:50:33	[FATAL]	failed start server:	http: Server closed
-19:50:33	[INFO]	Sercer gracefully shutdown
+14:33:43	[INFO]	start server
+14:33:56	[ERROR]	failed to increment CounterService:	context deadline exceeded
+14:33:56	[ERROR]	failed increment counter:	context deadline exceeded
+14:35:24	[FATAL]	failed start server:	http: Server closed
+14:35:24	[INFO]	Sercer gracefully shutdown
+e 'required' tag
+14:24:58	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:13	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:14	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:15	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:16	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:17	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:17	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:18	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:18	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:19	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
+14:25:26	[ERROR]	bad request:	Key: 'counterDecRequest.Decrement' Error:Field validation for 'Decrement' failed on the 'required' tag
+14:25:48	[FATAL]	failed start server:	http: Server closed
+14:25:48	[INFO]	Sercer gracefully shutdown

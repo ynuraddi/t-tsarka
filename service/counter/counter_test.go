@@ -114,7 +114,7 @@ func TestCounterService_Get(t *testing.T) {
 
 	testCases := []struct {
 		name      string
-		want      int
+		want      int64
 		wantErr   bool
 		buildStub func()
 	}{

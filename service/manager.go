@@ -4,6 +4,7 @@ import (
 	"github.com/redis/go-redis/v9"
 	"github.com/ynuraddi/t-tsarka/config"
 	"github.com/ynuraddi/t-tsarka/ilogger"
+	"github.com/ynuraddi/t-tsarka/service/counter"
 	"github.com/ynuraddi/t-tsarka/service/email"
 	"github.com/ynuraddi/t-tsarka/service/iin"
 	"github.com/ynuraddi/t-tsarka/service/substr"
@@ -24,15 +25,16 @@ type IIINService interface {
 }
 
 type ICounterService interface {
-	Add(i int) error
-	Sub(i int) error
-	Get() (int, error)
+	Add(i int64) error
+	Sub(i int64) error
+	Get() (int64, error)
 }
 
 type Manager struct {
-	Substr ISubstrService
-	Email  IEmailService
-	IIN    IIINService
+	Substr  ISubstrService
+	Email   IEmailService
+	IIN     IIINService
+	Counter ICounterService
 }
 
 func New(config *config.Config, logger ilogger.ILogger, redisClient *redis.Client) *Manager {
@@ -40,10 +42,13 @@ func New(config *config.Config, logger ilogger.ILogger, redisClient *redis.Clien
 	emailService := email.NewEmailService(logger)
 	iinService := iin.NewiinService(logger)
 
+	counterService := counter.NewCounterService(config, logger, redisClient)
+
 	manager := &Manager{
-		Substr: substrService,
-		Email:  emailService,
-		IIN:    iinService,
+		Substr:  substrService,
+		Email:   emailService,
+		IIN:     iinService,
+		Counter: counterService,
 	}
 
 	return manager

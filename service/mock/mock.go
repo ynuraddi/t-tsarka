@@ -120,3 +120,69 @@ func (mr *MockIIINServiceMockRecorder) Check(s interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Check", reflect.TypeOf((*MockIIINService)(nil).Check), s)
 }
+
+// MockICounterService is a mock of ICounterService interface.
+type MockICounterService struct {
+	ctrl     *gomock.Controller
+	recorder *MockICounterServiceMockRecorder
+}
+
+// MockICounterServiceMockRecorder is the mock recorder for MockICounterService.
+type MockICounterServiceMockRecorder struct {
+	mock *MockICounterService
+}
+
+// NewMockICounterService creates a new mock instance.
+func NewMockICounterService(ctrl *gomock.Controller) *MockICounterService {
+	mock := &MockICounterService{ctrl: ctrl}
+	mock.recorder = &MockICounterServiceMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockICounterService) EXPECT() *MockICounterServiceMockRecorder {
+	return m.recorder
+}
+
+// Add mocks base method.
+func (m *MockICounterService) Add(i int64) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Add", i)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Add indicates an expected call of Add.
+func (mr *MockICounterServiceMockRecorder) Add(i interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Add", reflect.TypeOf((*MockICounterService)(nil).Add), i)
+}
+
+// Get mocks base method.
+func (m *MockICounterService) Get() (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Get")
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Get indicates an expected call of Get.
+func (mr *MockICounterServiceMockRecorder) Get() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockICounterService)(nil).Get))
+}
+
+// Sub mocks base method.
+func (m *MockICounterService) Sub(i int64) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Sub", i)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Sub indicates an expected call of Sub.
+func (mr *MockICounterServiceMockRecorder) Sub(i interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Sub", reflect.TypeOf((*MockICounterService)(nil).Sub), i)
+}

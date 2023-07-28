@@ -50,7 +50,7 @@ func (s *counterService) Sub(i int64) error {
 	return nil
 }
 
-func (s *counterService) Get() (int, error) {
+func (s *counterService) Get() (int64, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -64,5 +64,5 @@ func (s *counterService) Get() (int, error) {
 		s.logger.Error("failed to convert value CounterService", err)
 		return 0, err
 	}
-	return num, nil
+	return int64(num), nil
 }
