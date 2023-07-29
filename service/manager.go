@@ -1,9 +1,9 @@
 package service
 
 import (
-	"github.com/redis/go-redis/v9"
 	"github.com/ynuraddi/t-tsarka/config"
 	"github.com/ynuraddi/t-tsarka/ilogger"
+	"github.com/ynuraddi/t-tsarka/pkg/client/redis"
 	"github.com/ynuraddi/t-tsarka/service/counter"
 	"github.com/ynuraddi/t-tsarka/service/email"
 	"github.com/ynuraddi/t-tsarka/service/iin"
@@ -37,7 +37,13 @@ type Manager struct {
 	Counter ICounterService
 }
 
-func New(config *config.Config, logger ilogger.ILogger, redisClient *redis.Client) *Manager {
+func New(config *config.Config, logger ilogger.ILogger) (*Manager, error) {
+	redisClient, err := redis.NewClient(config)
+	if err != nil {
+		logger.Error("failed init redis client", err)
+		return nil, err
+	}
+
 	substrService := substr.NewSubstrService(logger)
 	emailService := email.NewEmailService(logger)
 	iinService := iin.NewiinService(logger)
@@ -51,5 +57,5 @@ func New(config *config.Config, logger ilogger.ILogger, redisClient *redis.Clien
 		Counter: counterService,
 	}
 
-	return manager
+	return manager, nil
 }

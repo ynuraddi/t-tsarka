@@ -1,19 +1,6 @@
-14:33:43	[INFO]	start server
-14:33:56	[ERROR]	failed to increment CounterService:	context deadline exceeded
-14:33:56	[ERROR]	failed increment counter:	context deadline exceeded
-14:35:24	[FATAL]	failed start server:	http: Server closed
-14:35:24	[INFO]	Sercer gracefully shutdown
-e 'required' tag
-14:24:58	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:13	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:14	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:15	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:16	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:17	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:17	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:18	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:18	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:19	[ERROR]	bad request:	Key: 'counterAddRequest.Increment' Error:Field validation for 'Increment' failed on the 'required' tag
-14:25:26	[ERROR]	bad request:	Key: 'counterDecRequest.Decrement' Error:Field validation for 'Decrement' failed on the 'required' tag
-14:25:48	[FATAL]	failed start server:	http: Server closed
-14:25:48	[INFO]	Sercer gracefully shutdown
+19:55:03	[DEBUG]	service succes inited
+19:55:03	[DEBUG]	server success inited
+19:55:03	[INFO]	start server
+19:55:10	[DEBUG]	gracefull shutdown is started
+19:55:10	[FATAL]	server stoped:	http: Server closed
+19:55:10	[INFO]	Server gracefully shutdown

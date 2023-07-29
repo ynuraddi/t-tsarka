@@ -7,7 +7,6 @@ import (
 	"os/signal"
 
 	"github.com/ynuraddi/t-tsarka/config"
-	"github.com/ynuraddi/t-tsarka/pkg/client/redis"
 	"github.com/ynuraddi/t-tsarka/pkg/logger"
 	"github.com/ynuraddi/t-tsarka/service"
 	"github.com/ynuraddi/t-tsarka/transport"
@@ -30,13 +29,10 @@ func main() {
 	}
 	logger := logger.NewLogger(fileLogs, logger.Level(config.LogLevel), osC)
 
-	redisClient, err := redis.NewClient(config)
+	service, err := service.New(config, logger)
 	if err != nil {
-		logger.Fatal("failed init redis client", err)
-		return
+		logger.Fatal("failed init service", err)
 	}
-
-	service := service.New(config, logger, redisClient)
 	logger.Debug("service succes inited")
 
 	server := transport.New(config, logger, service)

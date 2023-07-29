@@ -3,6 +3,7 @@ package logger
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"sync"
 	"syscall"
@@ -38,6 +39,23 @@ func NewLogger(out io.Writer, logLevel Level, sigChan chan<- os.Signal) *Logger 
 		minLevel: Level(logLevel),
 		mu:       sync.Mutex{},
 	}
+
+	log.Println("LOG LEVEL:", func(lvl Level) string {
+		switch lvl {
+		case LvlTest:
+			return "test"
+		case LvlErr:
+			return "error"
+		case LvlWrn:
+			return "warning"
+		case LvlInf:
+			return "info"
+		case LvlDeb:
+			return "debug"
+		default:
+			return fmt.Sprintf("pls choose loglvl between %d - %d", LvlTest, LvlDeb)
+		}
+	}(logLevel))
 
 	return logger
 }

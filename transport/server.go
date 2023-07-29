@@ -34,7 +34,7 @@ func (s *Server) Start(ctx context.Context) error {
 
 	go func() {
 		if err := s.router.Start(s.config.HttpHost + ":" + s.config.HttpPort); err != nil {
-			s.logger.Fatal("failed start server", err)
+			s.logger.Fatal("server stoped", err)
 		}
 	}()
 	<-ctx.Done()
@@ -44,10 +44,11 @@ func (s *Server) Start(ctx context.Context) error {
 		cancel()
 	}()
 
+	s.logger.Debug("gracefull shutdown is started")
 	if err := s.router.Shutdown(ctxShutDown); err != nil {
 		s.logger.Fatal("failed shutdown server", err)
 	}
 
-	s.logger.Info("Sercer gracefully shutdown")
+	s.logger.Info("Server gracefully shutdown")
 	return nil
 }
