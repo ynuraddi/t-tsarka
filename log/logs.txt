@@ -1,6 +1,8 @@
-19:55:03	[DEBUG]	service succes inited
-19:55:03	[DEBUG]	server success inited
-19:55:03	[INFO]	start server
-19:55:10	[DEBUG]	gracefull shutdown is started
-19:55:10	[FATAL]	server stoped:	http: Server closed
-19:55:10	[INFO]	Server gracefully shutdown
+02:21:42	[DEBUG]	postgres success inited
+02:21:42	[DEBUG]	successfully migrate
+02:21:42	[DEBUG]	service succes inited
+02:21:42	[DEBUG]	server success inited
+02:21:42	[INFO]	start server
+02:21:44	[DEBUG]	gracefull shutdown is started
+02:21:44	[FATAL]	server stoped:	http: Server closed
+02:21:44	[INFO]	Server gracefully shutdown

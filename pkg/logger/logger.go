@@ -29,7 +29,7 @@ type Logger struct {
 	minLevel Level
 	mu       sync.Mutex
 
-	sigChan chan os.Signal
+	sigChan chan<- os.Signal
 }
 
 // need chan osSignal for gracefull shutdown
@@ -38,24 +38,28 @@ func NewLogger(out io.Writer, logLevel Level, sigChan chan<- os.Signal) *Logger 
 		output:   out,
 		minLevel: Level(logLevel),
 		mu:       sync.Mutex{},
+
+		sigChan: sigChan,
 	}
 
-	log.Println("LOG LEVEL:", func(lvl Level) string {
-		switch lvl {
-		case LvlTest:
-			return "test"
-		case LvlErr:
-			return "error"
-		case LvlWrn:
-			return "warning"
-		case LvlInf:
-			return "info"
-		case LvlDeb:
-			return "debug"
-		default:
-			return fmt.Sprintf("pls choose loglvl between %d - %d", LvlTest, LvlDeb)
-		}
-	}(logLevel))
+	if logLevel != LvlTest {
+		log.Println("LOG LEVEL:", func(lvl Level) string {
+			switch lvl {
+			case LvlTest:
+				return "test"
+			case LvlErr:
+				return "error"
+			case LvlWrn:
+				return "warning"
+			case LvlInf:
+				return "info"
+			case LvlDeb:
+				return "debug"
+			default:
+				return fmt.Sprintf("pls choose loglvl between %d - %d", LvlTest, LvlDeb)
+			}
+		}(logLevel))
+	}
 
 	return logger
 }

@@ -5,9 +5,11 @@
 package mock_service
 
 import (
+	context "context"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
+	model "github.com/ynuraddi/t-tsarka/model"
 )
 
 // MockISubstrService is a mock of ISubstrService interface.
@@ -185,4 +187,86 @@ func (m *MockICounterService) Sub(i int64) error {
 func (mr *MockICounterServiceMockRecorder) Sub(i interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Sub", reflect.TypeOf((*MockICounterService)(nil).Sub), i)
+}
+
+// MockIUserService is a mock of IUserService interface.
+type MockIUserService struct {
+	ctrl     *gomock.Controller
+	recorder *MockIUserServiceMockRecorder
+}
+
+// MockIUserServiceMockRecorder is the mock recorder for MockIUserService.
+type MockIUserServiceMockRecorder struct {
+	mock *MockIUserService
+}
+
+// NewMockIUserService creates a new mock instance.
+func NewMockIUserService(ctrl *gomock.Controller) *MockIUserService {
+	mock := &MockIUserService{ctrl: ctrl}
+	mock.recorder = &MockIUserServiceMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockIUserService) EXPECT() *MockIUserServiceMockRecorder {
+	return m.recorder
+}
+
+// Create mocks base method.
+func (m *MockIUserService) Create(ctx context.Context, user model.User) (int64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Create", ctx, user)
+	ret0, _ := ret[0].(int64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Create indicates an expected call of Create.
+func (mr *MockIUserServiceMockRecorder) Create(ctx, user interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockIUserService)(nil).Create), ctx, user)
+}
+
+// Delete mocks base method.
+func (m *MockIUserService) Delete(ctx context.Context, id int64) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Delete", ctx, id)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Delete indicates an expected call of Delete.
+func (mr *MockIUserServiceMockRecorder) Delete(ctx, id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockIUserService)(nil).Delete), ctx, id)
+}
+
+// Get mocks base method.
+func (m *MockIUserService) Get(ctx context.Context, id int64) (model.User, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Get", ctx, id)
+	ret0, _ := ret[0].(model.User)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Get indicates an expected call of Get.
+func (mr *MockIUserServiceMockRecorder) Get(ctx, id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockIUserService)(nil).Get), ctx, id)
+}
+
+// Update mocks base method.
+func (m *MockIUserService) Update(ctx context.Context, user model.User) (model.User, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Update", ctx, user)
+	ret0, _ := ret[0].(model.User)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Update indicates an expected call of Update.
+func (mr *MockIUserServiceMockRecorder) Update(ctx, user interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockIUserService)(nil).Update), ctx, user)
 }

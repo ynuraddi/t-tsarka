@@ -31,7 +31,7 @@ func TestUserRepoCreateUser(t *testing.T) {
 			firstName: "aboba1",
 			lastName:  "aboba2",
 			buildStub: func() {
-				mock.ExpectExec("insert into table users").WithArgs("aboba1", "aboba2").WillReturnResult(sqlmock.NewResult(1, 1))
+				mock.ExpectQuery("insert into users").WithArgs("aboba1", "aboba2").WillReturnRows(sqlmock.NewRows([]string{"id"}).AddRow(1))
 			},
 			checkResult: func(get int64, err error) {
 				require.NoError(t, err)
@@ -43,19 +43,7 @@ func TestUserRepoCreateUser(t *testing.T) {
 			firstName: "aboba1",
 			lastName:  "aboba2",
 			buildStub: func() {
-				mock.ExpectExec("insert into table users").WithArgs("aboba1", "aboba2").WillReturnError(errors.New("internal"))
-			},
-			checkResult: func(get int64, err error) {
-				require.Error(t, err)
-				require.Equal(t, int64(0), get)
-			},
-		},
-		{
-			name:      "LastInsertId error",
-			firstName: "aboba1",
-			lastName:  "aboba2",
-			buildStub: func() {
-				mock.ExpectExec("insert into table users").WithArgs("aboba1", "aboba2").WillReturnResult(sqlmock.NewErrorResult(errors.New("internal")))
+				mock.ExpectQuery("insert into users").WithArgs("aboba1", "aboba2").WillReturnError(errors.New("internal"))
 			},
 			checkResult: func(get int64, err error) {
 				require.Error(t, err)

@@ -28,6 +28,12 @@ func New(config *config.Config, logger ilogger.ILogger) (*Manager, error) {
 	}
 	logger.Debug("postgres success inited")
 
+	if err = postgres.RunDBMigration(config); err != nil {
+		logger.Error("failed migrate", err)
+		return nil, err
+	}
+	logger.Debug("successfully migrate")
+
 	userRepostiory := postgres.NewUserRepository(logger, db)
 
 	return &Manager{

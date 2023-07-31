@@ -22,5 +22,10 @@ func (s *Server) setupRouter() {
 	router.POST("/rest/counter/sub/:i", s.counterSub)
 	router.GET("/rest/counter/val", s.counterGet)
 
+	router.POST("/rest/user", s.userCreate)
+	router.GET("/rest/user/:id", s.userGet)
+	router.PUT("/rest/user/:id", s.userUpdate)
+	router.DELETE("/rest/user/:id", s.userDelete)
+
 	s.router = router
 }

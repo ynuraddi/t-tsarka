@@ -8,6 +8,7 @@ import (
 
 	"github.com/ynuraddi/t-tsarka/config"
 	"github.com/ynuraddi/t-tsarka/pkg/logger"
+	"github.com/ynuraddi/t-tsarka/repository"
 	"github.com/ynuraddi/t-tsarka/service"
 	"github.com/ynuraddi/t-tsarka/transport"
 )
@@ -29,9 +30,16 @@ func main() {
 	}
 	logger := logger.NewLogger(fileLogs, logger.Level(config.LogLevel), osC)
 
-	service, err := service.New(config, logger)
+	repository, err := repository.New(config, logger)
+	if err != nil {
+		logger.Fatal("failed init repo", err)
+		return
+	}
+
+	service, err := service.New(config, logger, repository)
 	if err != nil {
 		logger.Fatal("failed init service", err)
+		return
 	}
 	logger.Debug("service succes inited")
 
@@ -39,7 +47,9 @@ func main() {
 	logger.Debug("server success inited")
 
 	logger.Info("start server")
-	log.Fatalln(server.Start(ctx))
+	if err := server.Start(ctx); err != nil {
+		log.Println(err)
+	}
 }
 
 func gracefullShutdown(c context.CancelFunc) chan os.Signal {

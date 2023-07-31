@@ -18,6 +18,9 @@ type Config struct {
 	PostgresUser   string `mapstructure:"POSTGRES_USER"`
 	PostgresPass   string `mapstructure:"POSTGRES_PASS"`
 	PostgresDBName string `mapstructure:"POSTGRES_DBNAME"`
+
+	MigrationURL string `mapstructure:"MIGRATION_URL"`
+	DB_DSN       string `mapstructure:"DB_DSN"`
 }
 
 func LoadConfig(path string) (config *Config, err error) {
