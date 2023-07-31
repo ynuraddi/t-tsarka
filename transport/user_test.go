@@ -2,6 +2,7 @@ package transport
 
 import (
 	"bytes"
+	"database/sql"
 	"encoding/json"
 	"errors"
 	"net/http"
@@ -189,6 +190,16 @@ func TestUserGet(t *testing.T) {
 				require.Equal(t, http.StatusInternalServerError, recorder.Code)
 			},
 		},
+		{
+			name:  "NotFound",
+			param: "1",
+			buildStubs: func(mock *mock_service.MockIUserService) {
+				mock.EXPECT().Get(gomock.Any(), gomock.Any()).Times(1).Return(model.User{}, sql.ErrNoRows)
+			},
+			checkResponce: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusNotFound, recorder.Code)
+			},
+		},
 	}
 
 	for _, test := range testCases {
@@ -284,6 +295,17 @@ func TestUserUpdate(t *testing.T) {
 				require.Equal(t, http.StatusInternalServerError, recorder.Code)
 			},
 		},
+		{
+			name:  "NotFound",
+			param: "1",
+			input: `{"first_name":"first", "last_name":"last"}`,
+			buildStubs: func(mock *mock_service.MockIUserService) {
+				mock.EXPECT().Update(gomock.Any(), gomock.Any()).Times(1).Return(model.User{}, sql.ErrNoRows)
+			},
+			checkResponce: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusNotFound, recorder.Code)
+			},
+		},
 	}
 
 	for _, test := range testCases {
@@ -348,6 +370,16 @@ func TestUserDelete(t *testing.T) {
 			},
 			checkResponce: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusInternalServerError, recorder.Code)
+			},
+		},
+		{
+			name:  "NotFound",
+			param: "1",
+			buildStubs: func(mock *mock_service.MockIUserService) {
+				mock.EXPECT().Delete(gomock.Any(), gomock.Any()).Times(1).Return(sql.ErrNoRows)
+			},
+			checkResponce: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusNotFound, recorder.Code)
 			},
 		},
 	}
